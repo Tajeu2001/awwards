@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid">
+    <br>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                {% csrf_token %}
+                {% bootstrap_form project_form %}
+                <button class="btn blue-gradient btn-sm">Post Project</button>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </form>
+</div>
+{% endblock %}
