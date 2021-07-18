@@ -11,6 +11,18 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
+cloudinary.config( 
+    cloud_name = "instagram-santa", 
+    api_key = "891768422865438", 
+    api_secret = "GokPH3gkx3sgDlc3mF7YhXbZs2g",
+    secure = True
+    )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects',
     'crispy_forms',
+    'bootstrap4',
+    'cloudinary',
 
 ]
 
@@ -78,9 +92,11 @@ WSGI_APPLICATION = 'awwards.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'awwards',
+        'USER': 'moringa',
+        'PASSWORD':'siantayo15',
+        }
 }
 
 
@@ -114,7 +130,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
