@@ -7,11 +7,14 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="card">
-                
+                <div class="card-title mt-4">
+                    <img src="{% static 'images/insta3.png' %}" alt="" width="40%" class="D-block mx-auto">
+                </div>
                 <div class="card-body mb-3 mr-3 ml-3">
-                    <p class="text-center">Sign up to rate projects.</p>
+                    <p class="text-center">Sign up 
+                    </p>
                     <form action="" method="post" novalidate>
-                        {% csrf_token%}
+                        {%csrf_token%}
                         {{ form|crispy}}
                         <button type="submit" class="btn btn-primary btn-sm"> Sign up</button>
                     </form>
@@ -24,7 +27,10 @@
                     <p>Have an account? <a href="{% url 'login' %}">Log in</a></p>
                 </div>
             </div>
+            
         </div>
+
+        <div class="col-md-4"></div>
     </div>
 </div>
 
