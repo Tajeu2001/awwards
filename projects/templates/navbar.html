@@ -15,21 +15,19 @@
     {% if user.is_authenticated %}
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">
-        <a class="nav-link"  href="{% url  'profile' user.username %}" style="color:blue; font-size:23px;">Profile</a>
+        <a class="nav-link"  href="{% url  'profile'  %}" style="color:blue; font-size:23px;">Profile</a>
       </li>
       
-      <li style="color:hotpink;">
-        <button class="btn btn-info " id="site" style="color:hotpink;" data-toggle="modal" data-target=".bd-example-modal-xl "> <a href="{% url 'newProject' %}" style="color:hotpink;">Submit your site</a>
+      <li >
+        <button class="btn btn-info " id="site" style="color:hotpink;" data-toggle="modal" data-target=".bd-example-modal-xl "> <a href="{% url 'newProject' %}" style="color:white">Submit your site</a>
           
         </button>
         </li>
         
-      <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}"  data-toggle="popover-hover" data-content="Logout">LOG OUT   <i class="fas fa-sign-out-alt"></i></a>
-      </li>
+    
     </ul>
     {% else %}
-    <a href="{% url 'login' %}" class="login btn btn-sm btn-info"> REGISTER/LOGIN </a>
+    
     {% endif %}
   </div>
 </nav>

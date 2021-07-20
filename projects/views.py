@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializer
 # Create your views here.
 
-def signup(request):
+def register(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -21,12 +21,13 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('index')
+            return redirect('login')
     else:
         form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'registration/registration_form.html', {'form': form})
 
 
+@login_required(login_url='/accounts/login/')
 def index(request):
     title = "Awwards"
     current_user = request.user
@@ -34,36 +35,28 @@ def index(request):
     return render(request, 'index.html',{'title':title,'current_user':current_user,'projects':projects})
 
 
-@login_required(login_url='login')
-def profile(request, username):
-    return render(request, 'profile.html')
 
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    current_user = request.user
+    projects = Project.objects.filter(user_id= current_user.id).all()
 
-def user_profile(request, username):
-    user_prof = get_object_or_404(User, username=username)
-    if request.user == user_prof:
-        return redirect('profile', username=request.user.username)
-    params = {
-        'user_prof': user_prof,
-    }
-    return render(request, 'profile.html', params)
+    return render(request,'profile.html',{'current_user':current_user,'projects':projects})
 
-@login_required(login_url='login')
+@login_required(login_url='/accounts/login/')
 def update_profile(request):
     current_user = request.user
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST,instance=request.user)
-        profile_form = UpdateProfileForm(request.POST,request.FILES,instance=request.user.profile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            return redirect('profile',id=current_user.id)
+        return redirect('profile')
 
     else:
         user_form = UpdateUserForm(instance=request.user)
-        profile_form = UpdateProfileForm(instance=request.user.profile)
-    
-@login_required(login_url='login')
+        
+    return render(request, 'update_profile.html', {'user_form':user_form , })   
+
+
+@login_required(login_url='/accounts/login/')
 def post_project(request):
     current_user = request.user
     if request.method == 'POST':
@@ -80,7 +73,7 @@ def post_project(request):
     return render(request,'new_project.html',{'title':title,'project_form':project_form,'current_user':current_user})
 
 
-@login_required(login_url='/login/')
+@login_required(login_url='/accounts/login/')
 def project(request,project_id):
     current_user = request.user
     project = Project.objects.filter(id=project_id).first()
@@ -92,7 +85,7 @@ def project(request,project_id):
     title = f'{project.title} details'
     return render(request,'project.html',{'title':title,'project':project,'current_user':current_user,'ratings':ratings,'usability_rating':usability_rating,'content_rating':content_rating,'design_rating':design_rating})
 
-@login_required(login_url='login')
+@login_required(login_url='/accounts/login/')
 def rate(request,project_id):
     current_user = request.user
     project = Project.objects.filter(id=project_id).first()

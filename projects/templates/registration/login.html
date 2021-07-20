@@ -1,25 +1,21 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{%extends "base.html"%} 
+{% load bootstrap4 %}
+
 {% block content %}
-<div class="container" style="margin-top:7%;">
+<div class="container-fluid">
+    <hr>
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="card" style="margin-top:14%; padding:20px">
-                <div class="card-body">
-                    <h5 class="card-title"><a>Login </a> <span style="float:right">Don't have an account? <a
-                            href="{% url 'signup' %}" class="text-info">Create </a></span></h5>
-                    <div class="card-text">
-                        <form action="" method="post" novalidate >
-                            {% csrf_token%}
-                            {{ form|crispy}}
-                            <button type="submit" class="btn btn-info btn-sm">Login</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <form method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button type="submit" class="btn blue-gradient btn-sm">LOG IN</button>
+                <input type="hidden" name="next" value="{{next}}">
+            </form>
+            <p>Don't have an account?<a href="/accounts/register">Sign up here</a></p>
+
         </div>
-        <div class="col-md-2"></div>
     </div>
 </div>
 {% endblock %}

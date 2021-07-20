@@ -3,26 +3,26 @@
 {% block content %}
 <div class="container-fluid">
     <hr>
-    <div class="jumbotron text-center " style=" background-color: rgb(22, 21, 21); color:white;">
-        <h2 class="card-title h2">{{profile.user.username}}'s profile</h2>
+    <div class="jumbotron text-center " style=" background-color: rgb(36, 35, 35); color:white;">
+        <h2 class="card-title h2">{{user.username}}'s profile</h2>
         {% if profile.user.first_name and profile.user.last_name %}
         <p class="indigo-text my-4 font-weight-bold">{{profile.user.first_name}}  {{profile.user.last_name}}</p>
         {% endif %}
         <div class="row d-flex justify-content-center">
             <div class="col-xl-7 pb-2">
-                {% if profile.bio %}
-                <p class="card-text">{{profile.bio}}</p>
+                {% if user.bio %}
+                <p class="card-text">{{user.bio}}</p>
                 {% endif %}
                 <h6 class="card-title">Contact Information</h6>
-                {% if profile.phone_number %}
-                <p class="card-text">Phone Number: {{profile.phone_number}}</p>
+                {% if user.phone_number %}
+                <p class="card-text">Phone Number: {{user.phone_number}}</p>
                 {% endif %}
-                <p class="card-text">Email: {{profile.user.email}}</p>
+                <p class="card-text">Email: {{user.email}}</p>
             </div>  
         </div>
         <hr class="my-4 pb-2">
         <img src="{{user.profile.profile_pic.url}}" class="rounded-circle z-depth-0" alt="Profile Pic" height="150" width="150"><br><br>
-        {% if profile.user == request.user and request.user.is_authenticated %}
+        {% if user == request.user and request.user.is_authenticated %}
         <button><a role="button" href="{% url 'update_profile' %}" class="btn blue-gradient">UPDATE YOUR PROFILE</a></button>
         {% else %}
         <div></div>
@@ -43,7 +43,7 @@
     <div class="col-md-4">
         <div class="card mb-3">
             <div class="view overlay">
-                <button class="btn blue-gradient btn-sm"> Update Profile</button>
+                
                 <img class="card-img-top" src="{{project.photo.url}}">
                 <a>
                     <div class="mask rgba-white-slight"></div>
@@ -51,7 +51,7 @@
             </div>
             <div class="card-body">
                 <h4 class="card-title"><a style="color: inherit; text-decoration: none;" href="{% url 'project' project_id=project.id %}">{{project.title}}</a></h3>
-                <p class="card-text">{{project.project_description|truncatechars:80}}</p>
+                <p class="card-text">{{project.description|truncatechars:80}}</p>
                 <a style="color: inherit; text-decoration: none;" href="{{project.project_link}}"><button>View live site </button> <i class="fas fa-angle-double-right"></i></p></a>
                 <p class="card-text" style="text-align: right;">{{project.posted_on|timesince}}  ago</p>
             </div>
