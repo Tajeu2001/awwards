@@ -1,1 +1,1 @@
-web: gunicorn socials.wsgi
+web: gunicorn awwards.wsgi
