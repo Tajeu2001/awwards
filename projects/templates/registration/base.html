@@ -15,7 +15,12 @@
                 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <title>Insta-lite</title>
+        {% block styles %}
+        {% bootstrap_css %}
+        {% endblock %}
+
 </head>
+
 <body class="reg">
 {% block content %}
 

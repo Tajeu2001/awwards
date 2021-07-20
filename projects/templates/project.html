@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+
+{% block content %}
+<div class=" container container-fluid">
+    <!-- Jumbotron -->
+<div class="jumbotron text-center">
+
+    <!-- Title -->
+        <h4 class="card-title h4 pb-2"><strong>{{project.title}}</strong></h4>
+    
+        <!-- Card image -->
+        <div class="view overlay my-4">
+        <img src="{{project.photo.url}}" class="img-fluid" alt="">
+        <a>
+            <div class="mask rgba-white-slight"></div>
+        </a>
+        </div>
+    
+    <h5 class="indigo-text h5 mb-4">Project by  <a href="{% url 'profile' user.username %}" style="text-decoration: none;">{{project.user.username}} <img  src="{{project.user.profile.profile_pic.url}}" width="35" height="35" class="rounded-circle border userimage"></a></h5>
+    <h5 class="indigo-text h5 mb-4"><a href="{{project.link}}" style="text-decoration: none;">View site</a></h5>
+    <p class="card-text">{{project.project_description}}</p>
+    {% if ratings %}
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="indigo-text h5 mb-4 text-center">RATINGS</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-2">
+            <h6>USABILITY</h6>
+            <p>{{usability_rating.usability__avg}}</p>
+        </div>
+        <div class="col-md-2">
+            <h6>DESIGN</h6>
+            <p>{{design_rating.design__avg}}</p>
+        </div>
+        <div class="col-md-2">
+            <h6>CONTENT</h6>
+            <p>{{content_rating.content__avg}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h6 class="text-center">OVERALL SCORE</h6>
+            <p>{{ usability_rating.usability__avg| add:design_rating.design__avg| add:content_rating.content__avg| div:3| truncatechars:6 }}</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="indigo-text h5 mb-4 text-center">THERE ARE NO RATINGS YET</h5>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'rate' project.id %}" class="btn blue-gradient">RATE THIS PROJECT</a>
+        </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+</div>
+{% endblock %}
