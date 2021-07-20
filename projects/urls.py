@@ -13,6 +13,4 @@ urlpatterns = [
   path('rate/<project_id>',views.rate,name='rate'),
   path('api/profile/',views.ProfileList.as_view()),
   path('api/project/',views.ProjectList.as_view()),
-  path('api/profile/profile_id/',views.ProfileDescription.as_view()),
-  path('api/project/project_id/<pk>/',views.ProjectDescription.as_view()), 
-]
+] 
