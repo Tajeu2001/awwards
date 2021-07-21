@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import django_heroku
-from decouple import config, Csv
 import dj_database_url
 import cloudinary
 import cloudinary.uploader
@@ -53,7 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects',
     'crispy_forms',
-    'tinymce',
     'bootstrap4',
     'cloudinary',
     'mathfilters',
