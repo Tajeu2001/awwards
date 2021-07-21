@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import django_heroku
+from decouple import config, Csv
+import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects',
     'crispy_forms',
+    'tinymce',
     'bootstrap4',
     'cloudinary',
     'mathfilters',
@@ -64,6 +67,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,6 +81,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'awwards.urls'
+
 
 TEMPLATES = [
     {
@@ -109,6 +114,7 @@ DATABASES = {
         }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=500)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

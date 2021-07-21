@@ -17,9 +17,9 @@
         </a>
         </div>
     
-    <h5 class="indigo-text h5 mb-4">Project by  <a href="{% url 'profile' user.username %}" style="text-decoration: none;">{{project.user.username}} <img  src="{{project.user.profile.profile_pic.url}}" width="35" height="35" class="rounded-circle border userimage"></a></h5>
+    <h5 class="indigo-text h5 mb-4">Project by  <a href="{% url 'profile'  %}" style="text-decoration: none;">{{project.user.username}} </a></h5>
     <h5 class="indigo-text h5 mb-4"><a href="{{project.link}}" style="text-decoration: none;">View site</a></h5>
-    <p class="card-text">{{project.project_description}}</p>
+    <p class="card-text">{{project.description}}</p>
     {% if ratings %}
     <div class="row">
         <div class="col-md-12">
@@ -59,7 +59,7 @@
             <a href="{% url 'rate' project.id %}" class="btn blue-gradient">RATE THIS PROJECT</a>
         </div>
     </div>
-  </div>
-  <!-- Jumbotron -->
+    </div>
+    <!-- Jumbotron -->
 </div>
 {% endblock %}
