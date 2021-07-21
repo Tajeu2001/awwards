@@ -1,6 +1,6 @@
-# Insta-Clone
+# Awwards
 
-An instagram clone that has similar functionalities with instagram.The users get to create profiles of their own to be able to upload images with captions on them.They can also view images uploaded by other users.Apart from viewing they can also comment and like the photos.
+This project allows users to rate other people's projects and  post their own projects for other users to rate according to design, usability and content
 
 ## Prerequisites
 
@@ -20,11 +20,11 @@ An instagram clone that has similar functionalities with instagram.The users get
 To get the project .......    
 ##### Cloning the repository:  
  ```bash 
-git clone https://github.com/Tajeu2001/instagram-clone.git
+git clone https://github.com/Tajeu2001/awwards.git
 ```
 ##### Navigate into the folder 
  ```bash 
-cd instagram-clone
+cd awwards
 ```
 ##### Install and activate Virtual  
  ```bash 
@@ -53,23 +53,13 @@ python3.8 manage.py test
 ```
 Open the application on your browser `127.0.0.1:8000`.  
 
-### View of the application homepage
-
-![alt text](https://github.com/Tajeu2001/instagram-clone/blob/master/static/images/home.png)
-
-### View of the profile page
-
-
-![alt text](https://github.com/Tajeu2001/instagram-clone/blob/master/static/images/profile.png)
 
 ## User Story
 
 * Users get to sign up and login
 * Update their profile
-* Post their own photos
-* View photos uploaded by other users
-* Comment on photos
-* Like photos
+* Post their own projects to be rated
+* Rate projects posted by other users
 
 
 ## Deployment
